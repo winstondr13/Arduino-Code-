@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "LED Matrix",
+			"path": "LED Matrix"
+		},
+		{
+			"name": "Graphite resistor",
+			"path": "Graphite resistor"
+		},
+		{
+			"name": "Random Sandbox",
+			"path": "Random Sandbox"
+		},
+		{
+			"name": "User Input test",
+			"path": "User Input test"
+		}
+	],
+	"settings": {}
+}
