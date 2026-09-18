@@ -1,47 +1,50 @@
 #include <Arduino.h>
-int button = 2;
-String buttonState = "LOW";
+// defines pins numbers
+const int trigPin = 11;
+const int echoPin = 12;
+const int powerPin = 9;
 
-// put function declarations here:
-void setup(){
-  Serial.begin(9600);
-  pinMode(2, INPUT_PULLUP);
-  delay(1000);
-  Serial.println("Reading Button State");
+// defines variables
+long duration;
+int distance;
+
+void setup() {
+  // UltraSonoc Pins
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+  pinMode(powerPin, OUTPUT); // Sets the powerPin as an Output
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(powerPin, HIGH); // Turns on the power to the sensor
+
+  Serial.begin(9600); // Starts the serial communication
 }
-void loop(){
-  int breakCheck = 0;
-  int makeCheck = 0;
+
+void loop() {
+  // Clears the trigPin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+
+  // Calculating the distance
+  distance = duration * 0.034 / 2;
   
-  int butState = digitalRead(button);
-  Serial.println("Starting While Loop - Checking If Button Is HIGH");
-  while(butState == HIGH){
-    if(butState == HIGH){
-    buttonState = "HIGH";
-  }else if(butState == LOW){
-    buttonState = "LOW";
-  }else{
-  }
-    Serial.println("Button " + buttonState + " : Break Check Loop # " + String(breakCheck)); 
+ 
+  
+  if(distance > 4){
+    Serial.println("Stop!!!");
     delay(100);
-    breakCheck++;
-    butState = digitalRead(button);
-  }
-  Serial.println("Starting While Loop - Checking If Button Is LOW");
-   while(butState == LOW){
-    
-    if(butState == HIGH){
-    buttonState = "HIGH";
-  }else if(butState == LOW){
-    buttonState = "LOW";
   }else{
+    Serial.print("Distance: ");
+  Serial.println(distance);
+  delay(50);
   }
-    Serial.println("Button " + buttonState + " : Make Check Loop # " + String(makeCheck)); 
-    delay(100);
-    makeCheck++;
-    butState = digitalRead(button);
-  }
-
+  
 }
-
-
