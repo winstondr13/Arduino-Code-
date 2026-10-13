@@ -15,6 +15,18 @@
 		{
 			"name": "User Input test",
 			"path": "User Input test"
+		},
+		{
+			"name": "ServoStuff",
+			"path": "ServoStuff"
+		},
+		{
+			"name": "Ultrasonic Labs",
+			"path": "Ultrasonic Labs"
+		},
+		{
+			"name": "IR reciever and transmitter",
+			"path": "IR reciever and transmitter"
 		}
 	],
 	"settings": {}
